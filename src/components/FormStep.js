@@ -8,7 +8,7 @@ const fraunces = Fraunces({
 });
 
 const montserrat = Montserrat({
-    weight: '200',
+    weights: ['400', '600'],
     subsets: ['latin']
 });
 
