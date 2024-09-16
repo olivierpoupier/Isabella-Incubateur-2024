@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import FormStep from '@/components/FormStep';
 
-const LandingSlide = ({ handleNext }) => {
+const Slide2 = ({ handlePrevious, handleNext }) => {
     const [stepData, setStepData] = useState({});
 
     const handleChange = (event) => {
@@ -14,10 +14,10 @@ const LandingSlide = ({ handleNext }) => {
 
     return (
         <FormStep
-            stepTitle="Welcome!"
+            stepTitle="Step 2!"
+            handlePrevious={handlePrevious}
             handleNext={() => handleNext(stepData)}
         >
-            <label htmlFor="name">Votre nom</label>
             <input 
                 type="text"
                 name="name"
@@ -28,4 +28,4 @@ const LandingSlide = ({ handleNext }) => {
     );
 };
 
-export default LandingSlide;
+export default Slide2;

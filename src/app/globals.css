@@ -22,6 +22,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Fraunces', serif;
 }
 
+input, textarea {
+  background-color: rgb(243, 244, 246);
+  border-radius: 0.25rem;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);

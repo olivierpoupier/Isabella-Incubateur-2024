@@ -28,14 +28,13 @@ const FormStep = ({ stepTitle, handlePrevious, handleNext, handleSubmit, childre
                 </form>
             </div>
             <div className={`${montserrat.className} footer mt-6 flex justify-between`}>
-                {handlePrevious && (
-                    <button
-                        className={`${previousButtonColor} font-bold py-2 px-4 rounded`}
-                        onClick={handlePrevious}
-                    >
-                        Previous
-                    </button>
-                )}
+                <button
+                    className={`${previousButtonColor} font-bold py-2 px-4 rounded`}
+                    onClick={handlePrevious}
+                    style={{ visibility: handlePrevious ? 'visible' : 'hidden' }}
+                >
+                    Previous
+                </button>
                 <div className="flex space-x-4">
                     {handleSubmit ? (
                         <button
