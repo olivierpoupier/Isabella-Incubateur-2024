@@ -1,12 +1,17 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import LandingSlide from '@/slides/LandingSlide';
 import Slide2 from '@/slides/SlideTwo';
+import { calculateGradientSteps } from '@/utils/ColorCalc';
 
 
 export default function Home() {
+  const numberOfSteps = 10; // including password and submission
+  const [color1, color2] = ['#ffb04f', '#ffa3ea'];
+  const colors = calculateGradientSteps(color1, color2, numberOfSteps).slice(0);
+  console.log(colors);
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
@@ -49,11 +54,11 @@ export default function Home() {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} />;
+        return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} colors={colors} step={step}/>;
       case 1:
-        return <Slide2 handleNext={handleNext} handlePrevious={handlePrev} />; // step 2: name, date, time
+        return <Slide2 handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
       case 2:
-        return <Slide2 handleSubmit={handleSubmit} handlePrevious={handlePrev} />; // step 2: name, date, time
+        return <Slide2 handleSubmit={handleSubmit} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
       default:
         return null;
     }

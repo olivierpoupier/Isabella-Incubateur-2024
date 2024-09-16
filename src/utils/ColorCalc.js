@@ -35,3 +35,17 @@ function hexToRgb(hex) {
   
     return gradientArray;
   }
+
+  export function lightenColor(hex) {
+    const percent = 50;
+    // Convert hex to RGB
+    const rgb = hex.replace(/^#/, '')
+      .match(/.{2}/g)
+      .map(x => parseInt(x, 16));
+    
+    // Calculate the lighter color
+    const newRgb = rgb.map(channel => Math.min(255, Math.floor(channel + (255 - channel) * (percent / 100))));
+    
+    // Convert RGB back to hex
+    return `#${newRgb.map(x => x.toString(16).padStart(2, '0')).join('')}`;
+  }

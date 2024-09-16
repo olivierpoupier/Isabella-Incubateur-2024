@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Fraunces, Montserrat } from 'next/font/google';
+import { lightenColor } from '@/utils/ColorCalc';
 
 const fraunces = Fraunces({
     weight: '500',
@@ -11,9 +12,15 @@ const montserrat = Montserrat({
     subsets: ['latin']
 });
 
-const FormStep = ({ stepTitle, handlePrevious, handleNext, handleSubmit, children, cardColor, previousButtonColor, nextButtonColor, submitButtonColor }) => {
+const FormStep = ({ stepTitle, handlePrevious, handleNext, handleSubmit, children, currentColor, previousColor, nextColor }) => {
+    const cardColor = lightenColor(currentColor);
+    console.log(cardColor);
+
     return (
-        <div className="card bg-white shadow-lg rounded-lg w-[90%] h-[90%] max-w-md flex flex-col justify-between p-6 mx-auto">
+        <div 
+            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[90%] h-[90%] max-w-md flex flex-col justify-between p-6 mx-auto`}
+            style={{ backgroundColor: cardColor }}
+        >
             <div className="header">
                 {
                     stepTitle &&
@@ -29,23 +36,28 @@ const FormStep = ({ stepTitle, handlePrevious, handleNext, handleSubmit, childre
             </div>
             <div className={`${montserrat.className} footer mt-6 flex justify-between`}>
                 <button
-                    className={`${previousButtonColor} font-bold py-2 px-4 rounded`}
+                    className={`${previousColor} font-bold py-2 px-4 rounded`}
+                    style={{ 
+                        backgroundColor: previousColor,
+                        visibility: handlePrevious ? 'visible' : 'hidden'
+                    }}
                     onClick={handlePrevious}
-                    style={{ visibility: handlePrevious ? 'visible' : 'hidden' }}
                 >
                     Previous
                 </button>
                 <div className="flex space-x-4">
                     {handleSubmit ? (
                         <button
-                            className={`${submitButtonColor} font-bold py-2 px-4 rounded`}
+                            className={`font-bold py-2 px-4 rounded`}
+                            style={{ backgroundColor: currentColor }}
                             onClick={handleSubmit}
                         >
                             Submit
                         </button>
                     ) : (
                         <button
-                            className={`${nextButtonColor} font-bold py-2 px-4 rounded`}
+                            className={`font-bold py-2 px-4 rounded`}
+                            style={{ backgroundColor: nextColor }}
                             onClick={handleNext}
                         >
                             Next

@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import FormStep from '@/components/FormStep';
+import { calculateGradientSteps } from '@/utils/ColorCalc';
 
-const LandingSlide = ({ handleNext }) => {
+const LandingSlide = ({ handleNext, colors, step }) => {
     const [stepData, setStepData] = useState({});
 
     const handleChange = (event) => {
@@ -16,6 +17,8 @@ const LandingSlide = ({ handleNext }) => {
         <FormStep
             stepTitle="Welcome!"
             handleNext={() => handleNext(stepData)}
+            currentColor={colors[step]}
+            nextColor={colors[step + 1]}
         >
             <label htmlFor="name">Votre nom</label>
             <input 
