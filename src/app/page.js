@@ -8,6 +8,7 @@ import { calculateGradientSteps } from '@/utils/ColorCalc';
 
 
 export default function Home() {
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
   const numberOfSteps = 10; // including password and submission
   const [color1, color2] = ['#ffb04f', '#ffa3ea'];
   const colors = calculateGradientSteps(color1, color2, numberOfSteps).slice(0);
@@ -36,7 +37,7 @@ export default function Home() {
 
   const handleSubmit = async () => {
     // change to real url
-    const response = await fetch('https://your-basin-url.basin.com', { // TODO change to real url
+    const response = await fetch(apiUrl, { // TODO change to real url
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,7 +73,7 @@ export default function Home() {
         exit={{ opacity: 0, x: direction * 100 }}
         transition={{ duration: 0.5 }}
         key={step}
-        className="w-full max-w-md min-h-[90%]" // Centering the card with width constraints
+        className="w-full max-w-lg min-h-[90%]" // Centering the card with width constraints
       >
         {renderStep()}
       </motion.div>

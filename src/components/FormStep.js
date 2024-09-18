@@ -12,24 +12,29 @@ const montserrat = Montserrat({
     subsets: ['latin']
 });
 
-const FormStep = ({ stepTitle, handlePrevious, handleNext, handleSubmit, children, currentColor, previousColor, nextColor }) => {
+const FormStep = ({ stepTitle, subtitle, handlePrevious, handleNext, handleSubmit, children, currentColor, previousColor, nextColor }) => {
     const cardColor = lightenColor(currentColor);
-    console.log(cardColor);
 
     return (
         <div 
-            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[90%] h-[90%] max-w-md flex flex-col justify-between p-6 mx-auto`}
+            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[100%] h-[90%] max-w-lg flex flex-col justify-between p-6 mx-auto`}
             style={{ backgroundColor: cardColor }}
         >
             <div className="header">
                 {
                     stepTitle &&
-                    <h2 className={`${fraunces.className} text-3xl mb-6`}>
+                    <h2 className={`${fraunces.className} text-3xl`}>
                         {stepTitle}
                     </h2>
                 }
+                {
+                    subtitle &&
+                    <p className={`${montserrat.className} text-md text-gray-600 mb-6`}>
+                        {subtitle}
+                    </p>
+                }
             </div>
-            <div className="body w-full max-w-md">
+            <div className="body w-full max-w-lg">
                 <form className={`${montserrat.className} flex flex-col items-center space-y-4 w-full`}>
                     {children}
                 </form>
