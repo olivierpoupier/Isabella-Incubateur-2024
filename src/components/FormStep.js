@@ -56,6 +56,9 @@ const FormStep = ({ stepTitle, subtitle, handlePrevious, validateNext, handleNex
                             className={`font-bold py-2 px-4 rounded`}
                             style={{ backgroundColor: currentColor }}
                             onClick={handleSubmit}
+                            {
+                                ...validateNext && { disabled: !validateNext() }
+                            }
                         >
                             Commander!
                         </button>

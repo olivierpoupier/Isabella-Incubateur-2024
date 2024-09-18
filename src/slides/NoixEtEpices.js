@@ -3,6 +3,7 @@ import FormStep from '@/components/FormStep';
 import SwatchPicker from '@/components/SwatchPicker';
 
 const NoixEtEpices = ({ handlePrevious, handleNext, colors, step }) => {
+    const numberOfSelections = 1;
     const [selectedSwatch, setSelectedSwatches] = useState([]);
 
     const options = [
@@ -23,8 +24,12 @@ const NoixEtEpices = ({ handlePrevious, handleNext, colors, step }) => {
 
     const images = options.map(option => option.image);
 
+    const validateNext = () => {
+        return selectedSwatch.length === numberOfSelections;
+    }
+
     next = () => {
-        if (selectedSwatch.length === 0) {
+        if (selectedSwatch.length === 0 || !validateNext()) {
             return; // TODO: add disable on next button
         }
 
@@ -38,6 +43,7 @@ const NoixEtEpices = ({ handlePrevious, handleNext, colors, step }) => {
             stepTitle="Noix et Épices"
             subtitle="Choisissez votre saveur favorite"
             handlePrevious={handlePrevious}
+            validateNext={validateNext}
             handleNext={next}
             previousColor={colors[step - 1]}
             currentColor={colors[step]}
@@ -45,7 +51,7 @@ const NoixEtEpices = ({ handlePrevious, handleNext, colors, step }) => {
         >
             <SwatchPicker
                 images={images} 
-                maxSelection={1} 
+                maxSelection={numberOfSelections} 
                 selectedSwatches={selectedSwatch} 
                 onSwatchChange={setSelectedSwatches} 
             />

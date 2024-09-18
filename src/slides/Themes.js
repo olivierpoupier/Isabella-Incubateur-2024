@@ -3,7 +3,8 @@ import FormStep from '@/components/FormStep';
 import SwatchPicker from '@/components/SwatchPicker';
 
 const Themes = ({ handlePrevious, handleSubmit, colors, step }) => {
-    const [selectedSwatch, setSelectedSwatches] = useState([]);
+    const numberOfSelections = 2;
+    const [selectedSwatches, setSelectedSwatches] = useState([]);
 
     const options = [
         {
@@ -35,14 +36,19 @@ const Themes = ({ handlePrevious, handleSubmit, colors, step }) => {
 
     const images = options.map(option => option.image);
 
+    function validateNext() {
+        return selectedSwatches.length === numberOfSelections;
+    }
+
     function submit() {
-        if (selectedSwatch.length === 0) {
+        if (selectedSwatches.length === 0 || !validateNext()) {
             return; // TODO: add disable on next button
         }
 
-        const value = options[selectedSwatch[0]].name;
-        console.log('selectedValue', value)
-        handleSubmit(value);
+
+        const values = selectedSwatches.map((selectedSwatchIndex) => options[selectedSwatchIndex].name);
+        console.log('selectedValues', values)
+        handleSubmit(values);
     }
 
     return (
@@ -50,6 +56,7 @@ const Themes = ({ handlePrevious, handleSubmit, colors, step }) => {
             stepTitle="Thèmes"
             subtitle="Choisissez vos deux thèmes favoris"
             handlePrevious={handlePrevious}
+            validateNext={validateNext}
             handleSubmit={submit}
             previousColor={colors[step - 1]}
             currentColor={colors[step]}
@@ -57,8 +64,8 @@ const Themes = ({ handlePrevious, handleSubmit, colors, step }) => {
         >
             <SwatchPicker
                 images={images} 
-                maxSelection={2} 
-                selectedSwatches={selectedSwatch} 
+                maxSelection={numberOfSelections} 
+                selectedSwatches={selectedSwatches} 
                 onSwatchChange={setSelectedSwatches} 
             />
         </FormStep>

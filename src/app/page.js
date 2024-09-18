@@ -13,22 +13,26 @@ import PasswordSlide from '@/slides/Password';
 
 export default function Home() {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  const numberOfSteps = 10; // including password and submission
+  const numberOfSteps = 7; // including password and submission
   const [color1, color2] = ['#ffb04f', '#ffa3ea'];
   const colors = calculateGradientSteps(color1, color2, numberOfSteps).slice(0);
-  console.log(colors);
   const [step, setStep] = useState(0);
-  const [formData, setFormData] = useState({
-    name: '',
-    group1: '',
-    group2: ''
-  });
+  const [formData, setFormData] = useState({});
   const [submitionResponse, setSubmitionResponse] = useState(null);
   const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
 
-  const handleNext = () => {
+  const handleNext = (stepData) => {
+    console.log('formData', formData);
+
     setDirection(1); // moving backward
     setStep(step + 1);
+
+    if(stepData) {
+      setFormData({ 
+        ...formData, 
+        ['step' + step]: stepData 
+      });
+    }
   }
   const handlePrev = () => {
     setDirection(-1); // moving backward
@@ -39,8 +43,15 @@ export default function Home() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async () => {
-    console.log('formData', formData);
+  const handleSubmit = async (stepData) => {
+    const finalData = stepData ? 
+    { 
+        ...formData, 
+        ['step' + step]: stepData 
+    } :
+    formData;
+
+    console.log('final data', finalData);
     // change to real url
     // const response = await fetch(apiUrl, { // TODO change to real url
     //   method: 'POST',
@@ -60,17 +71,17 @@ export default function Home() {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <PasswordSlide handleNext={handleNext} colors={colors} step={step}/>;
+        return <PasswordSlide handleNext={handleNext} colors={colors} step={step} stepData={formData['step'+step]}/>;
       case 1:
-        return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} colors={colors} step={step}/>;
+        return <LandingSlide formData={formData} handleNext={handleNext} colors={colors} step={step} stepData={formData['step'+step]}/>;
       case 2:
-        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
+        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, t stepData={formData['step'+step]}ime
       case 3:
-        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
       case 4:
-        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
       case 5:
-        return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+        return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
       default:
         return null;
     }

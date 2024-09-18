@@ -11,6 +11,8 @@ const LandingSlide = ({ handleNext, colors, step }) => {
             ...stepData,
             [name]: value
         });
+
+        console.log('stepData', stepData)
     };
 
     return (
@@ -20,7 +22,7 @@ const LandingSlide = ({ handleNext, colors, step }) => {
             currentColor={colors[step]}
             nextColor={colors[step + 1]}
         >
-            <label htmlFor="name">Votre nom</label>
+            <label htmlFor="name" className='mt-6'>Votre nom</label>
             <input
                 className='w-full p-2 rounded'
                 type="text"
