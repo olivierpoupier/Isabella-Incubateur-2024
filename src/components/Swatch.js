@@ -3,11 +3,11 @@ const Swatch = ({ image, isSelected, onClick }) => {
       <div 
         onClick={onClick} 
         style={{
-          width: '100px',
-          height: '100px',
+          width: '90px',
+          height: '90px',
           borderRadius: '50%',
           overflow: 'hidden',
-          border: isSelected ? '5px solid #ff868c' : 'none',
+          border: isSelected ? '5px solid #ff465c' : 'none',
           cursor: 'pointer',
         }}
       >

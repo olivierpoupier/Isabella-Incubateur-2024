@@ -24,9 +24,8 @@ const Slide2 = ({ handlePrevious, handleNext, colors, step }) => {
     const images = options.map(option => option.image);
 
     next = () => {
-        console.log('next', selectedSwatch);
-
-        handleNext(options[selectedSwatch].name);
+        const value = options[selectedSwatch[0]].name;
+        console.log('selectedValue', value)
     }
 
     return (

@@ -17,7 +17,7 @@ const FormStep = ({ stepTitle, subtitle, handlePrevious, handleNext, handleSubmi
 
     return (
         <div 
-            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[100%] h-[90%] max-w-lg flex flex-col justify-between p-6 mx-auto`}
+            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[90%] h-[90%] max-w-lg flex flex-col justify-between p-6 mx-auto`}
             style={{ backgroundColor: cardColor }}
         >
             <div className="header">
