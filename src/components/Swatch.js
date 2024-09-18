@@ -7,7 +7,7 @@ const Swatch = ({ image, isSelected, onClick }) => {
           height: '100px',
           borderRadius: '50%',
           overflow: 'hidden',
-          border: isSelected ? '3px solid #ff868c' : 'none',
+          border: isSelected ? '5px solid #ff868c' : 'none',
           cursor: 'pointer',
         }}
       >

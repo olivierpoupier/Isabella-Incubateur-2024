@@ -41,7 +41,7 @@ const Slide2 = ({ handlePrevious, handleNext, colors, step }) => {
         >
             <SwatchPicker
                 images={images} 
-                maxSelection={2} 
+                maxSelection={1} 
                 selectedSwatches={selectedSwatch} 
                 onSwatchChange={setSelectedSwatches} 
             />
