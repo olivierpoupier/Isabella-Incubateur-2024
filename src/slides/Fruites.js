@@ -2,10 +2,7 @@ import { useState } from 'react';
 import FormStep from '@/components/FormStep';
 import SwatchPicker from '@/components/SwatchPicker';
 
-const Fruites = ({ handlePrevious, handleNext, colors, step }) => {
-    const numberOfSelections = 1;
-    const [selectedSwatch, setSelectedSwatches] = useState([]);
-
+const Fruites = ({ handlePrevious, handleNext, colors, step, existingData = -1 }) => {
     const options = [
         {
             name: 'Fraises',
@@ -20,7 +17,10 @@ const Fruites = ({ handlePrevious, handleNext, colors, step }) => {
             name: 'Bleuets',
             image: '/assets/B4.png'
         }, 
-    ]
+    ];
+
+    const numberOfSelections = 1;
+    const [selectedSwatch, setSelectedSwatches] = useState(existingData ? [options.findIndex(option => option.name === existingData)] : []);
 
     const images = options.map(option => option.image);
 

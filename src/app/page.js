@@ -22,8 +22,6 @@ export default function Home() {
   const [direction, setDirection] = useState(1); // 1 for forward, -1 for backward
 
   const handleNext = (stepData) => {
-    console.log('formData', formData);
-
     setDirection(1); // moving backward
     setStep(step + 1);
 
@@ -71,17 +69,17 @@ export default function Home() {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <PasswordSlide handleNext={handleNext} colors={colors} step={step} stepData={formData['step'+step]}/>;
+        return <PasswordSlide handleNext={handleNext} colors={colors} step={step} existingData={formData['step'+step]}/>;
       case 1:
-        return <LandingSlide formData={formData} handleNext={handleNext} colors={colors} step={step} stepData={formData['step'+step]}/>;
+        return <LandingSlide formData={formData} handleNext={handleNext} colors={colors} step={step} existingData={formData['step'+step]}/>;
       case 2:
-        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, t stepData={formData['step'+step]}ime
+        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step} existingData={formData['step'+step]}/>;
       case 3:
-        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
+        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} existingData={formData['step'+step]}/>;
       case 4:
-        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
+        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step} existingData={formData['step'+step]}/>;
       case 5:
-        return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step} stepData={formData['step'+step]}/>;
+        return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step} existingData={formData['step'+step]}/>;
       default:
         return null;
     }

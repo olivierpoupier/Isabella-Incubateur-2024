@@ -2,8 +2,8 @@ import { useState } from 'react';
 import FormStep from '@/components/FormStep';
 import { calculateGradientSteps } from '@/utils/ColorCalc';
 
-const LandingSlide = ({ handleNext, colors, step }) => {
-    const [stepData, setStepData] = useState({});
+const LandingSlide = ({ handleNext, colors, step, existingData = []}) => {
+    const [stepData, setStepData] = useState(existingData);
 
     const handleChange = (event) => {
         const { name, value } = event.target;
