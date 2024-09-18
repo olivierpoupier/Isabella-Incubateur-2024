@@ -3,8 +3,11 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import LandingSlide from '@/slides/LandingSlide';
-import Slide2 from '@/slides/SlideTwo';
+import Classiques from '@/slides/Classiques';
 import { calculateGradientSteps } from '@/utils/ColorCalc';
+import Fruites from '@/slides/Fruites';
+import NoixEtEpices from '@/slides/NoixEtEpices';
+import Themes from '@/slides/Themes';
 
 
 export default function Home() {
@@ -36,20 +39,21 @@ export default function Home() {
   };
 
   const handleSubmit = async () => {
+    console.log('formData', formData);
     // change to real url
-    const response = await fetch(apiUrl, { // TODO change to real url
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
+    // const response = await fetch(apiUrl, { // TODO change to real url
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(formData),
+    // });
 
-    if (response.ok) {
-      setSubmitionResponse('Gâteau commandé avec succès!');
-    } else {
-      setSubmitionResponse('Il y a eu une erreur lors de la commande du gâteau \n Veuillez contacter Isabella et réessayer plus tard');
-    }
+    // if (response.ok) {
+    //   setSubmitionResponse('Gâteau commandé avec succès!');
+    // } else {
+    //   setSubmitionResponse('Il y a eu une erreur lors de la commande du gâteau \n Veuillez contacter Isabella et réessayer plus tard');
+    // }
   };
 
   const renderStep = () => {
@@ -57,9 +61,13 @@ export default function Home() {
       case 0:
         return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} colors={colors} step={step}/>;
       case 1:
-        return <Slide2 handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
+        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
       case 2:
-        return <Slide2 handleSubmit={handleSubmit} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
+        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+      case 3:
+        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+      case 4:
+        return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step}/>;
       default:
         return null;
     }

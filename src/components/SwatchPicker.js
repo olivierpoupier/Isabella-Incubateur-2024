@@ -21,7 +21,7 @@ const SwatchPicker = ({ images, selectedSwatches, maxSelection, onSwatchChange  
   };
 
   return (
-    <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'space-around'}}>
+    <div className='swatch-grid'>
       {images.map((image, index) => (
         <Swatch
           key={index}

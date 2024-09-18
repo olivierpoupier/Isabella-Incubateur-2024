@@ -38,3 +38,16 @@ body {
     text-wrap: balance;
   }
 }
+
+.swatch-grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns by default */
+  justify-items: center;
+}
+
+@media (min-width: 768px) {
+  .swatch-grid {
+    grid-template-columns: repeat(4, 1fr); /* 4 columns on wider screens */
+  }
+}
