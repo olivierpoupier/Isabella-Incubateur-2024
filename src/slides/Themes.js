@@ -2,7 +2,7 @@ import { useState } from 'react';
 import FormStep from '@/components/FormStep';
 import SwatchPicker from '@/components/SwatchPicker';
 
-const Themes = ({ handlePrevious, handleNext, colors, step }) => {
+const Themes = ({ handlePrevious, handleSubmit, colors, step }) => {
     const [selectedSwatch, setSelectedSwatches] = useState([]);
 
     const options = [
@@ -35,14 +35,14 @@ const Themes = ({ handlePrevious, handleNext, colors, step }) => {
 
     const images = options.map(option => option.image);
 
-    next = () => {
+    function submit() {
         if (selectedSwatch.length === 0) {
             return; // TODO: add disable on next button
         }
 
         const value = options[selectedSwatch[0]].name;
         console.log('selectedValue', value)
-        handleNext(value);
+        handleSubmit(value);
     }
 
     return (
@@ -50,7 +50,7 @@ const Themes = ({ handlePrevious, handleNext, colors, step }) => {
             stepTitle="Thèmes"
             subtitle="Choisissez vos deux thèmes favoris"
             handlePrevious={handlePrevious}
-            handleNext={next}
+            handleSubmit={submit}
             previousColor={colors[step - 1]}
             currentColor={colors[step]}
             nextColor={colors[step + 1]}

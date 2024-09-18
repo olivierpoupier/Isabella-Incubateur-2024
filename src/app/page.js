@@ -8,6 +8,7 @@ import { calculateGradientSteps } from '@/utils/ColorCalc';
 import Fruites from '@/slides/Fruites';
 import NoixEtEpices from '@/slides/NoixEtEpices';
 import Themes from '@/slides/Themes';
+import PasswordSlide from '@/slides/Password';
 
 
 export default function Home() {
@@ -59,14 +60,16 @@ export default function Home() {
   const renderStep = () => {
     switch (step) {
       case 0:
-        return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} colors={colors} step={step}/>;
+        return <PasswordSlide handleNext={handleNext} colors={colors} step={step}/>;
       case 1:
-        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
+        return <LandingSlide formData={formData} handleChange={handleChange} handleNext={handleNext} colors={colors} step={step}/>;
       case 2:
-        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+        return <Classiques handleNext={handleNext} handlePrevious={handlePrev} colors={colors} step={step}/>; // step 2: name, date, time
       case 3:
-        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+        return <Fruites handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
       case 4:
+        return <NoixEtEpices handleNext={handleNext}  handlePrevious={handlePrev} colors={colors} step={step}/>;
+      case 5:
         return <Themes handleSubmit={handleSubmit}  handlePrevious={handlePrev} colors={colors} step={step}/>;
       default:
         return null;

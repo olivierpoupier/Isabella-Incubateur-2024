@@ -12,12 +12,12 @@ const montserrat = Montserrat({
     subsets: ['latin']
 });
 
-const FormStep = ({ stepTitle, subtitle, handlePrevious, handleNext, handleSubmit, children, currentColor, previousColor, nextColor }) => {
+const FormStep = ({ stepTitle, subtitle, handlePrevious, validateNext, handleNext, handleSubmit, children, currentColor, previousColor, nextColor }) => {
     const cardColor = lightenColor(currentColor);
 
     return (
         <div 
-            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[90%] h-[90%] max-w-lg flex flex-col justify-between p-6 mx-auto`}
+            className={`card bg-[${cardColor}] shadow-lg rounded-lg w-[90%] h-[90%] max-w-lg flex flex-col justify-between p-6 mx-auto mt-6 mb-6`}
             style={{ backgroundColor: cardColor }}
         >
             <div className="header">
@@ -41,14 +41,14 @@ const FormStep = ({ stepTitle, subtitle, handlePrevious, handleNext, handleSubmi
             </div>
             <div className={`${montserrat.className} footer mt-6 flex justify-between`}>
                 <button
-                    className={`${previousColor} font-bold py-2 px-4 rounded`}
+                    className={`${previousColor} font-bold py-2 px-4 rounded-[50%]`}
                     style={{ 
                         backgroundColor: previousColor,
                         visibility: handlePrevious ? 'visible' : 'hidden'
                     }}
                     onClick={handlePrevious}
                 >
-                    Previous
+                    &lt;
                 </button>
                 <div className="flex space-x-4">
                     {handleSubmit ? (
@@ -57,15 +57,18 @@ const FormStep = ({ stepTitle, subtitle, handlePrevious, handleNext, handleSubmi
                             style={{ backgroundColor: currentColor }}
                             onClick={handleSubmit}
                         >
-                            Submit
+                            Commander!
                         </button>
                     ) : (
                         <button
-                            className={`font-bold py-2 px-4 rounded`}
+                            className={`font-bold py-2 px-4 rounded-[50%] `}
                             style={{ backgroundColor: nextColor }}
                             onClick={handleNext}
+                            {
+                                ...validateNext && { disabled: !validateNext() }
+                            }
                         >
-                            Next
+                            &gt;
                         </button>
                     )}
                 </div>

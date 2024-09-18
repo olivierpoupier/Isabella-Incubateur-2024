@@ -29,7 +29,7 @@ const NoixEtEpices = ({ handlePrevious, handleNext, colors, step }) => {
         }
 
         const value = options[selectedSwatch[0]].name;
-        console.log('selectedValue', value)
+        
         handleNext(value);
     }
 
