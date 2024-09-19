@@ -51,19 +51,19 @@ export default function Home() {
 
     console.log('final data', finalData);
     // change to real url
-    // const response = await fetch(apiUrl, { // TODO change to real url
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(formData),
-    // });
+    const response = await fetch(apiUrl, { // TODO change to real url
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(finalData),
+    });
 
-    // if (response.ok) {
-    //   setSubmitionResponse('Gâteau commandé avec succès!');
-    // } else {
-    //   setSubmitionResponse('Il y a eu une erreur lors de la commande du gâteau \n Veuillez contacter Isabella et réessayer plus tard');
-    // }
+    if (response.ok) {
+      alert('Commande bien reçue! \n Merci et à bientôt :)');
+    } else {
+      alert('Il y a eu une erreur lors de la commande \n Veuillez contacter Isabella et réessayer plus tard');
+    }
   };
 
   const renderStep = () => {
@@ -87,6 +87,21 @@ export default function Home() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
+      {
+        submitionResponse && (
+          <div className="fixed top-0 left-0 w-full h-full bg-gray-100 bg-opacity-50 flex items-center justify-center">
+            <div className="bg-white p-8 rounded-lg">
+              <h1 className="text-2xl font-bold text-center">{submitionResponse}</h1>
+              <button
+                onClick={() => setSubmitionResponse(null)}
+                className="mt-4 bg-[#ffa3ea] text-white p-2 rounded"
+              >
+                Fermer
+              </button>
+            </div>
+          </div>
+        )
+      }
       <motion.div
         initial={{ opacity: 0, x: -direction * 100 }}
         animate={{ opacity: 1, x: 0 }}

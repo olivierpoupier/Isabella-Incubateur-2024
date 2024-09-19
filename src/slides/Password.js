@@ -39,7 +39,8 @@ const PasswordSlide = ({ handleNext, colors, step }) => {
             <label htmlFor="name">NIP</label>
             <input
                 className='w-full p-2 rounded tracking-[1rem] text-center text-[#ff868c] caret-transparent'
-                type="text"
+                type="number"
+                pattern="[0-9]*" 
                 name="password"
                 placeholder='******'
                 value={stepData.password || ""}
