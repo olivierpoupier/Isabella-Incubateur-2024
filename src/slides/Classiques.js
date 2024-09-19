@@ -6,7 +6,7 @@ const Classiques = ({ handlePrevious, handleNext, colors, step, existingData = n
     const options = [
         {
             name: 'Chocolat',
-            image: '/assets/A1.png'
+            image: '/assets/A1.PNG'
         }, {
             name: 'Vanille',
             image: '/assets/A2.png'
